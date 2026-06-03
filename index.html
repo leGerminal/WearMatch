@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>WearMatch AI V2.1</title>
+<title>WearMatch AI V2.2</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="WearMatch">
 <meta name="theme-color" content="#ff7a1a">
@@ -12,51 +12,188 @@
 </head>
 <body>
 <div class="iphone-shell">
-<header><div class="brand"><div class="logo">W</div><div><strong>WearMatch AI</strong><small>V2.1 Avatar Battle</small></div></div><button id="resetAll" class="ghost">Reset</button></header>
+<header>
+  <div class="brand"><div class="logo">W</div><div><strong>WearMatch AI</strong><small>V2.2 WearMe Engine</small></div></div>
+  <button id="resetAll" class="ghost">Reset</button>
+</header>
+
 <nav>
-<button class="tab active" data-screen="home">Accueil</button>
-<button class="tab" data-screen="profile">Avatar</button>
-<button class="tab" data-screen="match">Match</button>
-<button class="tab" data-screen="library">Biblio</button>
-<button class="tab" data-screen="battle">Battle</button>
-<button class="tab" data-screen="league">Ligue</button>
+  <button class="tab active" data-screen="home">Accueil</button>
+  <button class="tab" data-screen="profile">WearMe</button>
+  <button class="tab" data-screen="match">Match</button>
+  <button class="tab" data-screen="library">Biblio</button>
+  <button class="tab" data-screen="battle">Battle</button>
+  <button class="tab" data-screen="engine">Engine</button>
 </nav>
+
 <main>
 <section id="home" class="screen active">
-<div class="hero"><p class="eyebrow">WEARMATCH AI V2.1</p><h1>Ton avatar entre dans le game</h1><p>Crée ton WearMe™, génère tes looks IA, puis lance des battles humoristiques entre avatars.</p><div id="homeAvatar" class="avatar-zone"></div><button class="primary go-profile">Enregistrer et créer mon avatar</button><button class="secondary go-match">Créer un look</button></div>
-<div class="stats"><article><span>Looks</span><strong id="lookCount">0</strong></article><article><span>Images</span><strong id="imageCount">0</strong></article><article><span>Score moyen</span><strong id="avgScore">—</strong></article></div>
-<div class="card"><h3>Dernier look</h3><div id="lastLook">Aucun look généré.</div></div>
+  <div class="hero">
+    <p class="eyebrow">WEARME™ AVATAR ENGINE</p>
+    <h1>Ton double mode intelligent</h1>
+    <p>Crée un avatar plus crédible, basé sur ta photo, tes dimensions, ta morphologie et ton style.</p>
+    <div id="homeAvatar" class="avatar-zone"></div>
+    <button class="primary go-profile">Enregistrer et créer mon avatar</button>
+    <button class="secondary go-match">Créer un look</button>
+  </div>
+
+  <div class="stats">
+    <article><span>Looks</span><strong id="lookCount">0</strong></article>
+    <article><span>Images</span><strong id="imageCount">0</strong></article>
+    <article><span>Score moyen</span><strong id="avgScore">—</strong></article>
+  </div>
+
+  <div class="card">
+    <h3>WearMe™ Status</h3>
+    <div id="avatarStatus">Aucun avatar créé.</div>
+  </div>
 </section>
+
 <section id="profile" class="screen">
-<h2>Avatar WearMe™</h2>
-<div class="card">
-<label>Nom</label><input id="name" placeholder="Yohan">
-<label>Photo de toi</label><div class="duo"><label class="photo-btn">Galerie<input type="file" id="profileGallery" accept="image/*"></label><label class="photo-btn live">Caméra<input type="file" id="profileCamera" accept="image/*" capture="user"></label></div><img id="profilePreview" class="preview">
-<div class="duo"><div><label>Genre</label><select id="gender"><option>homme</option><option>femme</option><option>libre</option></select></div><div><label>Âge</label><input id="age" type="number" placeholder="32"></div></div>
-<div class="duo"><div><label>Taille en cm</label><input id="height" type="number" placeholder="178"></div><div><label>Poids en kg</label><input id="weight" type="number" placeholder="75"></div></div>
-<label>Morphologie</label><select id="body"><option>standard</option><option>mince</option><option>athlétique</option><option>large</option><option>grand</option><option>petit</option></select>
-<div id="femaleBox"><h3>Mensurations femme</h3><div class="trio"><div><label>Poitrine</label><input id="bust" type="number" placeholder="90"></div><div><label>Taille</label><input id="waist" type="number" placeholder="70"></div><div><label>Hanches</label><input id="hips" type="number" placeholder="95"></div></div></div>
-<label>Style préféré</label><select id="favoriteStyle"><option>casual chic</option><option>streetwear</option><option>business</option><option>luxe discret</option><option>vintage</option><option>sport premium</option><option>techwear</option><option>romantique</option></select>
-<button id="saveProfile" class="primary">Enregistrer et créer mon avatar</button>
-</div>
+  <h2>WearMe™ Avatar</h2>
+  <div class="card">
+    <label>Nom</label><input id="name" placeholder="Yohan">
+
+    <label>Photo principale</label>
+    <div class="duo">
+      <label class="photo-btn">Galerie<input type="file" id="profileGallery" accept="image/*"></label>
+      <label class="photo-btn live">Caméra<input type="file" id="profileCamera" accept="image/*" capture="user"></label>
+    </div>
+    <img id="profilePreview" class="preview">
+
+    <label>Photo corps entier</label>
+    <div class="duo">
+      <label class="photo-btn">Galerie<input type="file" id="bodyGallery" accept="image/*"></label>
+      <label class="photo-btn live">Caméra<input type="file" id="bodyCamera" accept="image/*" capture="environment"></label>
+    </div>
+    <img id="bodyPreview" class="preview">
+
+    <div class="duo">
+      <div><label>Genre</label><select id="gender"><option>homme</option><option>femme</option><option>libre</option></select></div>
+      <div><label>Âge</label><input id="age" type="number" placeholder="32"></div>
+    </div>
+
+    <div class="duo">
+      <div><label>Taille en cm</label><input id="height" type="number" placeholder="178"></div>
+      <div><label>Poids en kg</label><input id="weight" type="number" placeholder="75"></div>
+    </div>
+
+    <label>Morphologie</label>
+    <select id="body">
+      <option>standard</option><option>mince</option><option>athlétique</option><option>large</option><option>grand</option><option>petit</option><option>curvy</option><option>musclé</option>
+    </select>
+
+    <div id="femaleBox">
+      <h3>Mensurations</h3>
+      <div class="trio">
+        <div><label>Poitrine</label><input id="bust" type="number" placeholder="90"></div>
+        <div><label>Taille</label><input id="waist" type="number" placeholder="70"></div>
+        <div><label>Hanches</label><input id="hips" type="number" placeholder="95"></div>
+      </div>
+    </div>
+
+    <label>Style préféré</label>
+    <select id="favoriteStyle">
+      <option>casual chic</option><option>streetwear</option><option>business</option><option>luxe discret</option><option>vintage</option><option>sport premium</option><option>techwear</option><option>romantique</option>
+    </select>
+
+    <button id="saveProfile" class="primary">Enregistrer et créer mon avatar</button>
+  </div>
+
+  <div class="card">
+    <h3>Prévisualisation WearMe™</h3>
+    <div id="profileAvatar" class="avatar-zone"></div>
+    <div id="avatarDNA" class="dna"></div>
+  </div>
 </section>
+
 <section id="match" class="screen">
-<h2>Créer un match</h2><div class="card">
-<label>Type</label><select id="type"><option>solo</option><option>solo homme</option><option>solo femme</option><option>couple</option><option>groupe d’amis</option><option>famille</option><option>entreprise</option><option>événement</option><option>humain + animal</option><option>humain + robot</option></select>
-<label>Style</label><select id="style"><option>casual chic</option><option>streetwear</option><option>business</option><option>luxe discret</option><option>vintage</option><option>sport premium</option><option>techwear</option><option>romantique</option></select>
-<label>Budget</label><select id="budget"><option value="30 à 50 € / personne">Petit budget — 30 à 50 € / personne</option><option value="50 à 120 € / personne">Budget moyen — 50 à 120 € / personne</option><option value="120 à 300 € / personne">Premium — 120 à 300 € / personne</option><option value="300 € et plus / personne">Luxe — 300 € et plus / personne</option></select>
-<label>Occasion</label><select id="occasion"><option>quotidien</option><option>week-end</option><option>restaurant</option><option>soirée</option><option>mariage</option><option>travail</option><option>shooting photo</option></select>
-<label>Description</label><textarea id="description" placeholder="Exemple : look casual chic pour sortir samedi soir."></textarea>
-<label>Photo de référence</label><div class="duo"><label class="photo-btn">Galerie<input type="file" id="refGallery" accept="image/*"></label><label class="photo-btn live">Caméra<input type="file" id="refCamera" accept="image/*" capture="environment"></label></div><img id="refPreview" class="preview">
-<button id="generateDemo" class="primary">Générer WearVision</button></div>
-<div id="result" class="result hidden"><div class="score-burst"><span>WEARSCORE™</span><strong id="score">—</strong><small>/10</small><em id="scoreText">Challenge ready</em></div><h3>WearVision™</h3><div id="vision" class="vision"></div><h3>Détail du WearScore™</h3><div id="scoreDetails"></div><h3>Shopping / Friperies</h3><div id="shopping" class="shopping"></div><h3>Prompt IA prêt pour backend</h3><div id="promptBox" class="prompt-box"></div></div>
+  <h2>Créer un match</h2>
+  <div class="card">
+    <label>Type</label>
+    <select id="type"><option>solo</option><option>solo homme</option><option>solo femme</option><option>couple</option><option>groupe d’amis</option><option>famille</option><option>entreprise</option><option>événement</option><option>humain + animal</option><option>humain + robot</option></select>
+
+    <label>Style</label>
+    <select id="style"><option>casual chic</option><option>streetwear</option><option>business</option><option>luxe discret</option><option>vintage</option><option>sport premium</option><option>techwear</option><option>romantique</option></select>
+
+    <label>Budget</label>
+    <select id="budget"><option value="30 à 50 € / personne">Petit budget — 30 à 50 € / personne</option><option value="50 à 120 € / personne">Budget moyen — 50 à 120 € / personne</option><option value="120 à 300 € / personne">Premium — 120 à 300 € / personne</option><option value="300 € et plus / personne">Luxe — 300 € et plus / personne</option></select>
+
+    <label>Occasion</label>
+    <select id="occasion"><option>quotidien</option><option>week-end</option><option>restaurant</option><option>soirée</option><option>mariage</option><option>travail</option><option>shooting photo</option></select>
+
+    <label>Description</label>
+    <textarea id="description" placeholder="Exemple : look casual chic pour sortir samedi soir."></textarea>
+
+    <label>Photo de référence</label>
+    <div class="duo">
+      <label class="photo-btn">Galerie<input type="file" id="refGallery" accept="image/*"></label>
+      <label class="photo-btn live">Caméra<input type="file" id="refCamera" accept="image/*" capture="environment"></label>
+    </div>
+    <img id="refPreview" class="preview">
+
+    <button id="generateDemo" class="primary">Générer WearVision IA</button>
+  </div>
+
+  <div id="result" class="result hidden">
+    <div class="score-burst"><span>WEARSCORE™</span><strong id="score">—</strong><small>/10</small><em id="scoreText">Challenge ready</em></div>
+    <h3>WearVision™</h3>
+    <div id="vision" class="vision"></div>
+    <h3>Détail du WearScore™</h3>
+    <div id="scoreDetails"></div>
+    <h3>Shopping / Friperies</h3>
+    <div id="shopping" class="shopping"></div>
+    <h3>Prompt WearMe™ IA</h3>
+    <div id="promptBox" class="prompt-box"></div>
+  </div>
 </section>
+
 <section id="library" class="screen">
-<h2>Bibliothèque</h2><div class="card"><label>Catégorie</label><select id="category"><option value="dressing">Mon dressing, mes inspirations</option><option value="albums">Albums</option></select><p id="categoryHelp" class="hint">Photos de style quotidien : dressing, armoire, magazines, magasins, inspirations.</p><div class="duo"><label class="photo-btn">Galerie<input id="libraryGallery" type="file" accept="image/*" multiple></label><label class="photo-btn live">Caméra<input id="libraryCamera" type="file" accept="image/*" capture="environment"></label></div></div>
-<h3>Mon dressing, mes inspirations</h3><div id="dressingGrid" class="grid"></div><h3>Albums</h3><div id="albumsGrid" class="grid"></div>
+  <h2>Bibliothèque</h2>
+  <div class="card">
+    <label>Catégorie</label>
+    <select id="category"><option value="dressing">Mon dressing, mes inspirations</option><option value="albums">Albums</option></select>
+    <p id="categoryHelp" class="hint">Photos de style quotidien : dressing, armoire, magazines, magasins, inspirations.</p>
+    <div class="duo">
+      <label class="photo-btn">Galerie<input id="libraryGallery" type="file" accept="image/*" multiple></label>
+      <label class="photo-btn live">Caméra<input id="libraryCamera" type="file" accept="image/*" capture="environment"></label>
+    </div>
+  </div>
+  <h3>Mon dressing, mes inspirations</h3><div id="dressingGrid" class="grid"></div>
+  <h3>Albums</h3><div id="albumsGrid" class="grid"></div>
 </section>
+
 <section id="battle" class="screen">
-<h2>WearBattle™</h2><div class="card"><label>Nom de la battle</label><input id="battleName" placeholder="Samedi soir"><label>Adversaire</label><input id="opponentName" placeholder="Ami, Emma, Lucas..."><label>Style du duel</label><select id="battleMood"><option>humoristique</option><option>classe</option><option>street clash</option><option>soirée du week-end</option></select><button id="launchBattle" class="primary">Lancer le clash avatar</button></div><div id="battleStage" class="battle-stage">Ton WearMe™ attend son adversaire.</div>
+  <h2>WearBattle™</h2>
+  <div class="card">
+    <label>Nom de la battle</label><input id="battleName" placeholder="Samedi soir">
+    <label>Adversaire</label><input id="opponentName" placeholder="Ami, Emma, Lucas...">
+    <label>Style du duel</label><select id="battleMood"><option>humoristique</option><option>classe</option><option>street clash</option><option>soirée du week-end</option></select>
+    <button id="launchBattle" class="primary">Lancer le clash avatar</button>
+  </div>
+  <div id="battleStage" class="battle-stage">Ton WearMe™ attend son adversaire.</div>
 </section>
-<section id="league" class="screen"><h2>Fashion League™</h2><div class="card"><h3>Classement local</h3><div id="leagueList">Aucun score.</div></div></section>
-</main></div><script src="app.js"></script></body></html>
+
+<section id="engine" class="screen">
+  <h2>Open Source Engine</h2>
+  <div class="card">
+    <h3>Pipeline prévu</h3>
+    <div class="pipeline">
+      <div><b>1</b><span>Selfie + corps entier</span></div>
+      <div><b>2</b><span>WearMe DNA</span></div>
+      <div><b>3</b><span>Avatar réaliste</span></div>
+      <div><b>4</b><span>Try-on vêtements</span></div>
+      <div><b>5</b><span>Battle animée</span></div>
+    </div>
+    <p class="hint">Prévu pour brancher : SDXL / FLUX pour l’image, LivePortrait pour l’animation, segmentation vêtements, et moteur avatar paramétrique.</p>
+  </div>
+  <div class="card">
+    <h3>Prompt open source avatar</h3>
+    <div id="enginePrompt" class="prompt-box">Crée ton avatar pour générer le prompt.</div>
+  </div>
+</section>
+</main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
